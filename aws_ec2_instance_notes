@@ -1,0 +1,61 @@
+AMI
+- A template for the root volume for the instance (ex: operating system, application server, applications)
+- Launch permissions that control which AWS accounts can use the AMI to launch instances
+- A block device mapping that specifies the volumes to attach to the instance when it's launched
+
+
+
+
+
+EC2 Instance Store
+- Data stored on a local instance store persists only as long as the instance is alive
+- Storage is ephemeral
+
+
+
+
+
+EBS
+- Data stored on an Amazon EBS volume can persist independently of the life of the instance
+- Storage is persistent
+
+
+
+
+
+Choosing the right EC2 Instance
+- AWS uses Intel Xeon processors for EC2 instances
+- Consider the following:
+  - Core count
+  - Memory size
+  - Storage size and type
+  - Network performance
+  - CPU technologies
+
+
+
+
+
+Instance Metadata
+- Data about your instance
+- Can be used to configure or manage a running instance
+
+
+
+
+
+Instance User Data
+- Can be passed to the instance at launch
+- Can be used to perform common automated configuration tasks
+- Runs scripts after the instance starts
+
+
+
+
+
+Adding User Data
+- You can specify user data when launching an instance
+- User data can be:
+  - Linux scripts
+  - Powershell scripts
+- User data scripts run once per instance-id by default
