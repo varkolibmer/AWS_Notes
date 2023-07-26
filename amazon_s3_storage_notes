@@ -1,0 +1,100 @@
+Amazon S3: Objects
+- Objects (files) have a Key
+- The key is the FULL path:
+  - S3://my-bucket/myfile.txt
+- The key is composed of prefix + object name
+
+- There's no concept of 'directories' within buckets, although the UI will trick you to think otherwise
+- Just keys with very long names that contain slashes ('/')
+- Object values are the content of the body:
+  - Max object size is 5TB
+  - If uploading more than 5 GB, must use 'multi-part upload'
+- Metadata (list of text key / value pairs - system or user metadata)
+- Tags (unicode key / value pair - up to 10) - useful for security/lifecycle
+- Version ID
+
+
+
+
+
+
+Amazon S3: Security
+- User-based
+  - IAM Policies: Which API calls should be allowed for a specific user from IAM
+- Resource-based
+  - Bucket policies: bucket wide rules from the S3 console - allows cross account
+  - Object Access Control List (ACL): finer grain (can be disabled)
+  - Bucket Access Control List (ACL): less common (can be disabled)
+- Note: an IAM principal can access an S3 object if
+  - The user IAM permissions ALLOW it OR the resource policy ALLOWS it AND there's no explicit DENY
+- Encryption: encrypt objects in Amazon S3 using encryption keys
+
+
+
+
+
+
+Amazon S3 Bucket Policies
+- JSON based policies
+  - Resources: buckets and objects
+  - Effect: Allow/Deny
+  - Actions: Set of API to Allow or Deny
+  - Principal: The account or user to apply the policy to
+- Use S3 bucket for policy to:
+  - Grant public access to the bucket
+  - Force objects to be encrypted at upload
+  - Grant access to another account (Cross Account)
+
+
+
+
+
+
+Amazon S3 Encryption: SSE-S3
+- Encryption using keys handled, managed, and owned by AWS
+- Object is encrypted server-side
+- Encryption type is AES-256
+- Must set header "x-amz-server-side-encryption":"AES 256"
+- Enabled by default for new buckets and new objects
+
+
+
+
+
+SSE-KMS
+- Encryption using keys handled and managed by AWS KMS
+- KMS advantages: user control and audit key usage using Cloud Trail
+- Object is encrypted server side
+- Must set header "x-amz-server-side-encryption":"aws:kms"
+
+
+
+
+
+SSE-C
+- Keys fully managed by the customer outside of AWS
+- S3 does NOT store the encryption key you provide
+- HTTPS must be used
+
+
+
+
+
+
+Client-Side Encryption
+- Use client libraries such as Amazon S3 Client-Side Encryption Library
+- Clients must encrypt data themselves before sending to Amazon S3
+- Clients must decrypt data themselves when retrieving from S3
+- Customer fully manages the keys and encryption cycle
+
+
+
+
+
+Encryption in transit (SSL/TLS)
+- Encryption in flight is also called SSL/TLS
+- Amazon S3 exposes two endpoints:
+  - HTTP endpoint: non-encrypted
+  - HTTPS endpoint: encryption in flight
+- HTTPS is recommended, and mandatory for SSE-C
+
