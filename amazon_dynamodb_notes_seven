@@ -1,0 +1,4 @@
+DynamoDB Streams & AWS Lambda
+- You need to define an Event Source Mapping to read from a DynamoDB Streams
+- You need to ensure the Lambda function has the appropriate permissions
+- Your Lambda function is invoked synchronously
