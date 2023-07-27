@@ -1,0 +1,13 @@
+DynamoDB: Security and Other Features
+- Security:
+  - VPC endpoints available to access DynamoDB without internet
+  - Access fully controlled by IAM
+  - Encryption at rest using KMS
+  - Encryption in transit using SSL/TLS
+- Backup and Restore feature available
+  - Point in time restore like RDS
+  - No performance impact
+- Global Tables
+  - Multi region, fully replicated, high performance
+- Amazon Database Migration Service (DMS) can be used to migrate to DynamoDB (from Mongo, Oracle, MySQL, S3, etc...)
+- You can launch a local DynamoDB on your computer for development purposes
